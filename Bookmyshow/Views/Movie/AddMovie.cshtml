@@ -1,0 +1,29 @@
+﻿@model Movie
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Movies To Display</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+<body>
+    <div class="addmovie">
+        <h3>Add Movie</h3>
+        <form asp-action="AddMovie" asp-controller="Movie" method="post" enctype="multipart/form-data">
+            <label class="label" asp-for="Id">Id:</label>
+            <input class="field" asp-for="Id" type="text" /><br />
+            <label class="label" asp-for="MovieName">Name:</label>
+            <input class="field" asp-for="MovieName" type="text" /><br />
+            <label class="label">Upload File:</label>
+            <input class="field" type="file" name="imageFile" /><br />
+            <div class="checkbox">
+                <label class="label" asp-for="Status">Status</label>
+                <input class="field" asp-for="Status" type="checkbox" /><br />
+            </div>
+            <label class="label" asp-for="Genre"></label>
+            <select class="field" asp-for="Genre" asp-items="@ViewBag.GenreList" multiple></select><br />
+            <input class="button" type="submit" />
+        </form>
+    </div>
+</body>
+</html>
