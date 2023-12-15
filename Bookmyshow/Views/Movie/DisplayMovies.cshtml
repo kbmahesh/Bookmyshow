@@ -4,20 +4,24 @@
 <html>
     <head>
         <title>Movies</title>
+
     </head>
     <body>
         <h1>Recomended Movies</h1>
         @foreach(Movie movie in Model)
-        {
+    {
+        <div>
+
             @if (movie.MovieImage != null && movie.MovieImage.Length > 0)
             {
                 <img src="data:image/png;base64,@Convert.ToBase64String(movie.MovieImage)" alt="Movie Image" style="width:100px;height100px" />
             }
             <p>@movie.MovieName</p>
             <p>@movie.Genre</p>
-            @* <a asp-action="DisplayMovie" asp-route-Custid="@customer.Custid">View</a> &nbsp;
-            <a asp-action="EditMovie" asp-route-Custid="@customer.Custid">Edit</a> &nbsp; *@
+            <a asp-action="DisplayMovie" asp-route-Id="@movie.Id">View</a>
+            <a asp-action="EditMovie" asp-route-Id="@movie.Id">Edit</a>
             <a asp-action="DeleteMovie" asp-route-Id="@movie.Id" onclick="return confirm('Are you sure of deleting the record?')">Delete</a>
-        }
+        </div>
+    }
 </body>
 </html>

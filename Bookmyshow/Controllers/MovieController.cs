@@ -48,11 +48,23 @@ namespace Bookmyshow.Controllers
 
         public ViewResult EditMovie(int id)
         {
+            Movie movie = obj.Movie_Select(id);
+            ViewBag.GenreList = new SelectList(obj.GenreList(), "Value", "Text", movie.Genre);
             return View(obj.Movie_Select(id));
         }
 
-        public RedirectToActionResult UpdtaeMovie(Movie movie)
+        [HttpPost]
+        public RedirectToActionResult UpdtaeMovie(Movie movie,IFormFile imageFile)
         {
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    imageFile.CopyTo(memoryStream);
+                    memoryStream.Position = 0;
+                    movie.MovieImage = memoryStream.ToArray();
+                }
+            }
             obj.Movie_Update(movie);
             return RedirectToAction("DisplayMovies");
         }

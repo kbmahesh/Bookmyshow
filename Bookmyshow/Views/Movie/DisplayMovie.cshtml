@@ -1,0 +1,14 @@
+﻿@model Movie
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div>
+            <img src="data:image/png;base64,@Convert.ToBase64String(@Model.MovieImage)" alt="Movie Image" style="width:100px;height100px" />
+            <p>@Model.MovieName</p>
+            <p>@Model.Genre</p>
+        </div>
+    </body>
+</html>
